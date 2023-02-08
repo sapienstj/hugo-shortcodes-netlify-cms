@@ -147,6 +147,11 @@ CMS.registerEditorComponent({
         return `{{< youtube ${obj.id} >}}`;
     },
     toPreview: function(obj) {
+                {{- $youtubeHost := "https://www.youtube.com/watch?v=" }}
+                    {{- $url := .Get 0 }}
+                    {{- if in $url $youtubeHost }}
+                {{- $url = strings.TrimPrefix $youtubeHost $url }}
+        {{- end }}        
         return `<img src="https://i3.ytimg.com/vi/${obj.id}/hqdefault.jpg" alt="Youtube Video"/>`;
     },
 });
